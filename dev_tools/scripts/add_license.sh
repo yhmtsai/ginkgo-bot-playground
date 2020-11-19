@@ -7,7 +7,6 @@ THIS_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" &>/dev/null && pwd )
 cd "${THIS_DIR}/../.."
 GINKGO_ROOT_DIR="."
 
-
 LICENSE_FILE="${GINKGO_ROOT_DIR}/LICENSE"
 GINKGO_LICENSE_BEACON="******************************<GINKGO LICENSE>******************************"
 
