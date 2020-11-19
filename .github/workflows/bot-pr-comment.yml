@@ -18,7 +18,7 @@ jobs:
       run: .github/label.sh
   check_format:
     name: check-format
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-18.04
     if: github.event.issue.pull_request != '' && github.event.comment.body == 'check-format!' && (github.event.comment.author_association == 'COLLABORATOR' || github.event.comment.author_association == 'MEMBER' || github.event.comment.author_association == 'OWNER')
     steps:
     - name: Checkout the latest code
@@ -32,7 +32,7 @@ jobs:
       run: .github/check-format.sh
   format:
     name: format
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-18.04
     if: github.event.issue.pull_request != '' && github.event.comment.body == 'format!' && (github.event.comment.author_association == 'COLLABORATOR' || github.event.comment.author_association == 'MEMBER' || github.event.comment.author_association == 'OWNER')
     steps:
     - name: Checkout the latest code
@@ -53,6 +53,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         ref: develop
+        fetch-depth: 0
     - name: Automatic Rebase
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
