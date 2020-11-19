@@ -1,11 +1,11 @@
-on:
-  pull_request_target:
-    types: [opened]
-
-name: OnNewPR
+on: 
+  issue_comment:
+    types: [created]
+name: OnCommentPR
 jobs:
   label:
     runs-on: ubuntu-latest
+    if: github.event.issue.pull_request != '' && github.event.comment.body == 'label!' && (github.event.comment.author_association == 'MEMBER' || github.event.comment.author_association == 'OWNER')
     steps:
       - name: Checkout the latest code
         uses: actions/checkout@v2
