@@ -3,7 +3,6 @@ if (NOT CMAKE_BUILD_TYPE STREQUAL "Release")
         "Ginkgo is not being built in \"Release\" mode, benchmark performance "
         "will be affected")
 endif()
-
 if (GINKGO_BUILD_CUDA AND GINKGO_BUILD_HIP AND GINKGO_HIP_PLATFORM MATCHES "hcc")
     message(FATAL_ERROR "Building the benchmarks for both HIP AMD and CUDA "
         "at the same time is currently not supported. "
