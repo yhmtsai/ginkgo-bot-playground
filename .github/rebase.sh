@@ -20,6 +20,13 @@ git config user.name "$USER_NAME"
 LOCAL_BRANCH=rebase-tmp-$HEAD_BRANCH
 git checkout -b $LOCAL_BRANCH fork/$HEAD_BRANCH
 
+git log || head -n20
+echo; echo;
+git log $LOCAL_BRANCH || head -n20
+echo; echo;
+git log origin/$BASE_BRANCH || head -n20
+echo; echo;
+
 # do the rebase
 git rebase origin/$BASE_BRANCH 2>&1 || bot_error "Rebasing failed"
 
