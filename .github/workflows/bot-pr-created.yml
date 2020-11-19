@@ -10,7 +10,7 @@ jobs:
       - name: Checkout the latest code
         uses: actions/checkout@v2
         with:
-          ref: main
+          ref: develop
           fetch-depth: 0
       - name: Add appropriate labels
         env:
