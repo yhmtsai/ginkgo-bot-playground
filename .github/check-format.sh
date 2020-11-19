@@ -30,8 +30,6 @@ bot_error() {
   exit 1
 }
 
-set -x
-
 git remote add fork "${HEAD_URL}"
 git fetch fork "$HEAD_BRANCH"
 git checkout -b format-tmp-$HEAD_BRANCH "fork/$HEAD_BRANCH"

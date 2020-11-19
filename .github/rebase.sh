@@ -6,8 +6,6 @@ if [[ "$PR_MERGED" == "true" ]]; then
   bot_error "PR already merged!"
 fi
 
-set -x
-
 git remote set-url origin "$BASE_URL"
 git remote add fork "$HEAD_URL"
 
