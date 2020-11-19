@@ -1,0 +1,18 @@
+on:
+  pull_request_target:
+    types: [opened,synchronize]
+
+name: OnSyncPR
+jobs:
+  check-format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the latest code
+        uses: actions/checkout@v2
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Check for formatting changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: .github/check-format.sh
