@@ -24,7 +24,7 @@ OLD_LABELS=$(api_get "$ISSUE_URL" | jq -er '[.labels | .[] | .name]')
 
 
 label_match() {
-  if echo "$PR_FILES" | grep -sE "$2"; then
+  if echo "$PR_FILES" | grep -qE "$2"; then
     echo "+[\"$1\"]"
   fi
 }
