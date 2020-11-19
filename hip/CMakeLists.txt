@@ -1,7 +1,6 @@
 if (GINKGO_HIP_PLATFORM MATCHES "nvcc" AND CMAKE_CUDA_COMPILER_VERSION VERSION_LESS 9.2)
     message(FATAL_ERROR "Ginkgo HIP backend requires CUDA >= 9.2.")
 endif()
-
 if(NOT DEFINED ROCM_PATH)
     if(DEFINED ENV{ROCM_PATH})
         set(ROCM_PATH $ENV{ROCM_PATH} CACHE PATH "Path to which ROCM has been installed")
