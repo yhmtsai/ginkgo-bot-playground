@@ -1,7 +1,6 @@
 /*******************************<GINKGO LICENSE>******************************
 Copyright (c) 2017-2020, the Ginkgo authors
 All rights reserved.
-
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions
 are met:
