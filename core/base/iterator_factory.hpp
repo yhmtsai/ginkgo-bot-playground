@@ -110,7 +110,7 @@ private:
 
         ~Reference() {}
 
-        Reference(IteratorFactory &parent, array_index_type array_index)
+        Reference(IteratorFactory *parent, array_index_type array_index)
             : parent_(parent), arr_index_(array_index)
         {}
 
@@ -143,10 +143,10 @@ private:
         {
             // In C++11, it is legal for a nested class to access private
             // members of the parent class.
-            parent_.dominant_values_[arr_index_] =
-                std::move(other.parent_.dominant_values_[other.arr_index_]);
-            parent_.secondary_values_[arr_index_] =
-                std::move(other.parent_.secondary_values_[other.arr_index_]);
+            parent_->dominant_values_[arr_index_] =
+                std::move(other.parent_->dominant_values_[other.arr_index_]);
+            parent_->secondary_values_[arr_index_] =
+                std::move(other.parent_->secondary_values_[other.arr_index_]);
             return *this;
         }
 
@@ -174,25 +174,25 @@ private:
             return left.dominant < right.dominant();
         }
 
-        ToSortType &dominant() { return parent_.dominant_values_[arr_index_]; }
+        ToSortType &dominant() { return parent_->dominant_values_[arr_index_]; }
 
         const ToSortType &dominant() const
         {
-            return parent_.dominant_values_[arr_index_];
+            return parent_->dominant_values_[arr_index_];
         }
 
         SecondaryType &secondary()
         {
-            return parent_.secondary_values_[arr_index_];
+            return parent_->secondary_values_[arr_index_];
         }
 
         const SecondaryType &secondary() const
         {
-            return parent_.secondary_values_[arr_index_];
+            return parent_->secondary_values_[arr_index_];
         }
 
     private:
-        IteratorFactory &parent_;
+        IteratorFactory *parent_;
         array_index_type arr_index_;
     };
 
@@ -214,9 +214,11 @@ private:
         using reference = Reference;
         using iterator_category = std::random_access_iterator_tag;
 
+        Iterator() = default;
+
         ~Iterator() {}
 
-        Iterator(IteratorFactory &parent, difference_type array_index)
+        Iterator(IteratorFactory *parent, difference_type array_index)
             : parent_(parent), arr_index_(array_index)
         {}
 
@@ -329,8 +331,8 @@ private:
         }
 
     private:
-        IteratorFactory &parent_;
-        difference_type arr_index_;
+        IteratorFactory *parent_{};
+        difference_type arr_index_{};
     };
 
 public:
