@@ -10,6 +10,7 @@ stages:
   - benchmark-reference
   - on-failure
 
+
 # Templates with reasonable defaults for builds and tests
 .variables_template: &default_variables
   BENCHMARK_SERVER: "FINECI"
