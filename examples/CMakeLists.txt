@@ -1,6 +1,5 @@
 option(GINKGO_BUILD_EXTLIB_EXAMPLE "Build the external-lib-interfacing with deal.II, you need to link the deal.II library." OFF)
 option(GINKGO_RUN_EXAMPLES " Compile run and validation targets for the examples." ON)
-
 set(EXAMPLES_EXEC_LIST
     adaptiveprecision-blockjacobi
     custom-logger
