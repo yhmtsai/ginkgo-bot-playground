@@ -8,7 +8,6 @@ option(GINKGO_DOC_GENERATE_EXAMPLES "Generate example documentation" ON)
 if(GINKGO_DOC_GENERATE_EXAMPLES)
     add_subdirectory(examples)
 endif()
-
 if (GINKGO_DOC_GENERATE_PDF)
     find_package(LATEX COMPONENTS PDFLATEX REQUIRED)
 endif()
