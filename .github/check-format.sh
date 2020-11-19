@@ -2,8 +2,13 @@
 
 source $(dirname "${BASH_SOURCE[0]}")/bot-base.sh
 
-echo -n "Collecting information on pull request"
-PR_URL=$(jq -er ".pull_request.url" "$GITHUB_EVENT_PATH")
+echo -n "Collecting information on triggering PR"
+PR_URL=$(jq -r .pull_request.url "$GITHUB_EVENT_PATH")
+if [[ "$PR_URL" == "null" ]]; then
+  echo -n ........
+  PR_URL=$(jq -er .issue.pull_request.url "$GITHUB_EVENT_PATH")
+  echo -n .
+fi
 echo -n .
 PR_JSON=$(api_get $PR_URL)
 echo -n .
@@ -42,4 +47,5 @@ LIST_FILES=$(git diff --name-only)
 
 if [[ "$LIST_FILES" != "" ]]; then
   bot_error "The following files need to be formatted:\n"'```'"\n$LIST_FILES\n"'```'
+  git diff
 fi
