@@ -1,0 +1,18 @@
+on:
+  pull_request_target:
+    types: [opened]
+
+name: Bot summoned by new PR
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the latest code
+        uses: actions/checkout@v2
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Add appropriate labels
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: .github/label.sh
