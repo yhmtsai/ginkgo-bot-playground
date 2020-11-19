@@ -20,11 +20,11 @@ git config user.name "$USER_NAME"
 LOCAL_BRANCH=rebase-tmp-$HEAD_BRANCH
 git checkout -b $LOCAL_BRANCH fork/$HEAD_BRANCH
 
-git log || head -n20
+git log 2>&1 || head -n20
 echo; echo;
-git log $LOCAL_BRANCH || head -n20
+git log $LOCAL_BRANCH 2>&1 || head -n20
 echo; echo;
-git log origin/$BASE_BRANCH || head -n20
+git log origin/$BASE_BRANCH 2>&1 || head -n20
 echo; echo;
 
 # do the rebase
