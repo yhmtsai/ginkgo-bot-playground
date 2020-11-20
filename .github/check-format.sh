@@ -41,7 +41,7 @@ git checkout -b format-tmp-$HEAD_BRANCH "fork/$HEAD_BRANCH"
 
 # restore files from develop
 cp ../add_license.sh dev_tools/scripts/
-cp ../update_ginkgo_header.sh.sh dev_tools/scripts/
+cp ../update_ginkgo_header.sh dev_tools/scripts/
 cp ../format_header.sh dev_tools/scripts/
 
 # format files
