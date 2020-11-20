@@ -21,7 +21,7 @@ echo .
 HEAD_URL="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/$HEAD_REPO"
 
 bot_comment() {
-  api_post $ISSUE_URL/comments "{\"body\":\"$1\"}" > /dev/null
+  api_post "$ISSUE_URL/comments" "{\"body\":\"$1\"}"
 }
 
 bot_error() {
