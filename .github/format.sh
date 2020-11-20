@@ -30,10 +30,9 @@ cp ../update_ginkgo_header.sh dev_tools/scripts/
 cp ../format_header.sh dev_tools/scripts/
 
 # format files
-FILE_FILTER="-type f \( -name '*.cuh' -o -name '*.hpp' -o -name '*.hpp.in' -o -name '*.cpp' -o -name '*.cu' -o -name '*.hpp.inc' \)"
 dev_tools/scripts/update_ginkgo_header.sh
-find . $FILE_FILTER -exec dev_tools/scripts/format_header.sh "{}" \;
-find . $FILE_FILTER -exec clang-format-8 -i "{}" \;
+find . -type f \( -name '*.cuh' -o -name '*.hpp' -o -name '*.hpp.in' -o -name '*.cpp' -o -name '*.cu' -o -name '*.hpp.inc' \) -exec dev_tools/scripts/format_header.sh "{}" \;
+find . -type f \( -name '*.cuh' -o -name '*.hpp' -o -name '*.hpp.in' -o -name '*.cpp' -o -name '*.cu' -o -name '*.hpp.inc' \) -exec clang-format-8 -i "{}" \;
 dev_tools/scripts/add_license.sh
   
 # restore formatting scripts so they don't appear in the diff
