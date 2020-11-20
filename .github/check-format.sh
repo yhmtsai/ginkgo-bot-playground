@@ -31,6 +31,7 @@ bot_error() {
 }
 
 bot_comment "It me!"
+curl -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" "$ISSUE_URL/comments" -d "{\"body\":\"It me 2!\"}"
 
 git remote add fork "${HEAD_URL}"
 git fetch fork "$HEAD_BRANCH"
