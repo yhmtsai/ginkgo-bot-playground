@@ -37,8 +37,8 @@ dev_tools/scripts/add_license.sh
 # restore formatting scripts so they don't appear in the diff
 git checkout -- dev_tools/scripts/*.sh
 
-# check for changed files
-LIST_FILES=$(git diff --name-only)
+# check for changed files, replace newlines by \n
+LIST_FILES=$(git diff --name-only | sed '$!s/$/\\n/' | tr -d '\n')
 
 # commit changes if necessary
 if [[ "$LIST_FILES" != "" ]]; then
