@@ -31,7 +31,6 @@ cp ../format_header.sh dev_tools/scripts/
 
 # format files
 dev_tools/scripts/update_ginkgo_header.sh
-find . -type f \( -name '*.cuh' -o -name '*.hpp' -o -name '*.hpp.in' -o -name '*.cpp' -o -name '*.cu' -o -name '*.hpp.inc' \) -exec dev_tools/scripts/format_header.sh "{}" \;
 find . -type f \( -name '*.cuh' -o -name '*.hpp' -o -name '*.hpp.in' -o -name '*.cpp' -o -name '*.cu' -o -name '*.hpp.inc' \) -exec clang-format-8 -i "{}" \;
 dev_tools/scripts/add_license.sh
   
