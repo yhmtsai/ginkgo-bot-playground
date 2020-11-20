@@ -16,16 +16,28 @@ git fetch fork $HEAD_BRANCH
 git config user.email "bot@upsj.de"
 git config user.name "Bot"
 
+# save scripts from develop
+cd dev_tools/scripts
+cp add_license.sh update_ginkgo_header.sh format_header.sh ../../../
+cd ../../
+
 LOCAL_BRANCH=format-tmp-$HEAD_BRANCH
 git checkout -b $LOCAL_BRANCH fork/$HEAD_BRANCH
 
-# format all files
-dev_tools/scripts/add_license.sh
+# restore files from develop
+cp ../../add_license.sh dev_tools/scripts/
+cp ../../update_ginkgo_header.sh.sh dev_tools/scripts/
+cp ../../format_header.sh dev_tools/scripts/
+
+# format files
+FILE_FILTER="-type -f \( -name '*.cuh' -o -name '*.hpp' -o -name '*.hpp.in' -o -name '*.cpp' -o -name '*.cu' -o -name '*.hpp.inc' \)"
 dev_tools/scripts/update_ginkgo_header.sh
-dev_tools/scripts/format_header.sh
-find benchmark common core cuda dpcpp examples hip include omp reference test_install \
-  -name '*.cpp' -or -name '*.hpp' -or -name '*.cu' -or -name '*.cuh' \
-  -exec clang-format-8 -i {} \;
+find . $FILE_FILTER -exec dev_tools/scripts/format_header.sh "{}" \;
+find . $FILE_FILTER -exec clang-format-8 -i "{}" \;
+dev_tools/scripts/add_license.sh
+  
+# restore formatting scripts so they don't appear in the diff
+git checkout -- dev_tools/scripts/*.sh
 
 # check for changed files
 LIST_FILES=$(git diff --name-only)
