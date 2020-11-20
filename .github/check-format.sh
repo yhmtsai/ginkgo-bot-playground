@@ -53,7 +53,8 @@ dev_tools/scripts/add_license.sh
 # restore formatting scripts so they don't appear in the diff
 git checkout -- dev_tools/scripts/*.sh
 
-LIST_FILES=$(git diff --name-only)
+# replace newlines by \n
+LIST_FILES=$(git diff --name-only | sed '$!s/$/\\n/' | tr -d '\n')
 
 if [[ "$LIST_FILES" != "" ]]; then
   bot_error "The following files need to be formatted:\n"'```'"\n$LIST_FILES\n"'```'
