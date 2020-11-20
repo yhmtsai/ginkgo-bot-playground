@@ -25,9 +25,9 @@ LOCAL_BRANCH=format-tmp-$HEAD_BRANCH
 git checkout -b $LOCAL_BRANCH fork/$HEAD_BRANCH
 
 # restore files from develop
-cp ../../add_license.sh dev_tools/scripts/
-cp ../../update_ginkgo_header.sh.sh dev_tools/scripts/
-cp ../../format_header.sh dev_tools/scripts/
+cp ../add_license.sh dev_tools/scripts/
+cp ../update_ginkgo_header.sh.sh dev_tools/scripts/
+cp ../format_header.sh dev_tools/scripts/
 
 # format files
 FILE_FILTER="-type -f \( -name '*.cuh' -o -name '*.hpp' -o -name '*.hpp.in' -o -name '*.cpp' -o -name '*.cu' -o -name '*.hpp.inc' \)"
