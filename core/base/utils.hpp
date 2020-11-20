@@ -64,8 +64,7 @@ namespace detail {
 
 
 template <typename Dest>
-struct conversion_sort_helper {
-};
+struct conversion_sort_helper {};
 
 template <typename ValueType, typename IndexType>
 struct conversion_sort_helper<matrix::Csr<ValueType, IndexType>> {
